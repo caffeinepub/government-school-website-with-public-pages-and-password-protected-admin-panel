@@ -1,0 +1,82 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-11T03:22:21.815Z",
+  "summary": "Diff adds a multi-page public site with TanStack Router, a themed Tailwind design, and an admin panel with CRUD sections for content blocks/staff/notices/gallery/inquiries backed by a single Motoko actor using an access-control mixin. However, evidence for admin password hashing/change-password flow and required generated static image files is missing, and several unrequested features (Internet Identity login, user profiles) were introduced.",
+  "missing_requirements": [
+    {
+      "id": "REQ-6",
+      "requirement": "Add an admin settings capability to change the admin password (requiring the current password), with the password stored securely in the backend (hashed, not plaintext).",
+      "reason": "Admin password handling shown in the diff stores the entered password directly as a session token (\"caffeineAdminToken\") and initializes backend access control with that secret; no UI/API for changing password and no evidence of hashing/secure storage is shown.",
+      "evidence": [
+        "frontend/src/pages/AdminPage.tsx",
+        "frontend/src/hooks/useActor.ts",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "requirement": "Generate and include required static images in the frontend (placed in frontend/public/assets/generated) with exact filenames, and use them via static paths.",
+      "reason": "The layout references \"/assets/generated/school-logo.dim_512x512.png\", but the diff summary does not show the required image files being added under frontend/public/assets/generated (they may be among omitted files, but there is no explicit evidence).",
+      "evidence": [
+        "frontend/src/components/SiteLayout.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication flow added for admin access (in addition to password prompt).",
+      "reason": "BuildRequest requires password-protected admin panel and explicitly lists third-party login as a non-goal; diff introduces an Internet Identity provider and login/identity state for admin access without it being requested.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/main.tsx",
+        "frontend/src/pages/AdminPage.tsx",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "User profile management APIs/types in the backend.",
+      "reason": "User profile models and methods are implemented but not requested by any requirement (content management focuses on school pages, staff, notices, gallery, contact inquiries, and admin auth).",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/admin/AdminDashboard.tsx",
+    "frontend/src/admin/sections/ContentBlocksSection.tsx",
+    "frontend/src/admin/sections/GallerySection.tsx",
+    "frontend/src/admin/sections/InquiriesSection.tsx",
+    "frontend/src/admin/sections/NoticesSection.tsx",
+    "frontend/src/admin/sections/StaffSection.tsx",
+    "frontend/src/components/ContentBlock.tsx",
+    "frontend/src/components/PublicNav.tsx",
+    "frontend/src/components/SiteLayout.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useAdminContent.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/usePublicContent.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/AboutPage.tsx",
+    "frontend/src/pages/AcademicsPage.tsx",
+    "frontend/src/pages/AdminPage.tsx",
+    "frontend/src/pages/AdmissionsPage.tsx",
+    "frontend/src/pages/ContactPage.tsx",
+    "frontend/src/pages/GalleryPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/NoticeDetailPage.tsx",
+    "frontend/src/pages/NoticesListPage.tsx",
+    "frontend/src/pages/StaffPage.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

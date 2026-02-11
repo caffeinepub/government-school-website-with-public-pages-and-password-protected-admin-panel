@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Government school website with main public pages and a secure, password-protected admin panel for managing site content.",
+  "architectural_notes": [
+    "Include password-based authentication for admin access and restrict admin routes/URLs from public access.",
+    "Separate public site pages from admin dashboard for content management."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Government school emblem/crest style logo, flat vector look (school-logo.dim_512x512.png)\n- Wide hero banner illustration of a government school campus building with students, clean minimal style (hero-campus.dim_1600x600.png)\n- Set of simple outline icons for: admissions, academics, staff, notices, gallery, contact (school-icons.dim_512x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-the-public-facing-government-school-website-with-a-complete-navigation-and-pages-sections-home-about-the-school-admissions-academics-staff-faculty-news-notices-gallery-and-contact",
+      "title": "Create the public-facing government school website with a complete navigation and pages/sections: Home, About the School, Admissions, Academics, Staff/Faculty, News & Notices, Gallery, and Contact.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-consistent-visual-theme-for-the-site-colors-typography-spacing-and-component-styling-suitable-for-an-official-government-school-identity-and-apply-it-across-all-pages",
+      "title": "Implement a consistent visual theme for the site (colors, typography, spacing, and component styling) suitable for an official government school identity, and apply it across all pages.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-password-protected-admin-panel-that-allows-authorized-admins-to-manage-site-content-create-edit-delete-staff-entries-notices-news-posts-gallery-items-and-edit-page-content-blocks-and-contact-details",
+      "title": "Build a password-protected admin panel that allows authorized admins to manage site content (create/edit/delete staff entries, notices/news posts, gallery items, and edit page content blocks and contact details).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-protect-access-to-the-admin-panel-and-its-url-by-requiring-a-password-before-showing-admin-content-unauthenticated-users-must-not-be-able-to-view-admin-dashboard-screens-or-perform-admin-operations",
+      "title": "Protect access to the admin panel and its URL by requiring a password before showing admin content; unauthenticated users must not be able to view admin dashboard screens or perform admin operations.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-settings-capability-to-change-the-admin-password-requiring-the-current-password-with-the-password-stored-securely-in-the-backend-hashed-not-plaintext",
+      "title": "Add an admin settings capability to change the admin password (requiring the current password), with the password stored securely in the backend (hashed, not plaintext).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-contact-page-form-that-lets-visitors-submit-inquiries-to-the-school-store-submissions-in-the-backend-and-allow-admins-to-view-and-delete-them-in-the-admin-panel",
+      "title": "Add a Contact page form that lets visitors submit inquiries to the school; store submissions in the backend and allow admins to view and delete them in the admin panel.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-gallery-support-where-public-users-can-view-a-gallery-grid-and-admins-can-add-remove-gallery-entries-including-support-for-linking-to-image-assets-stored-as-frontend-static-files",
+      "title": "Add gallery support where public users can view a gallery grid and admins can add/remove gallery entries, including support for linking to image assets stored as frontend static files.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-news-notices-system-where-admins-can-publish-notices-title-body-date-and-the-public-site-shows-a-list-view-and-detail-view",
+      "title": "Add a News & Notices system where admins can publish notices (title, body, date) and the public site shows a list view and detail view.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-include-required-static-images-in-the-frontend-placed-in-frontend-public-assets-generated-and-use-them-in-the-site-header-footer-hero-as-appropriate-without-routing-image-delivery-through-the-backend",
+      "title": "Generate and include required static images in the frontend (placed in frontend/public/assets/generated) and use them in the site (header/footer/hero as appropriate) without routing image delivery through the backend.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build public-facing government school website with all main pages/sections (e.g., Home, About, Admissions, Academics, Staff, News/Notices, Gallery, Contact)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create secure admin panel for managing website content",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Protect admin panel URL and access with password-based authentication",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement backend content models and canister APIs to store and retrieve all website content needed for the public pages (school profile text, admissions info, academics info, staff list, notices/news posts, gallery items, contact details).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Government school website with public pages and password-protected admin panel",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

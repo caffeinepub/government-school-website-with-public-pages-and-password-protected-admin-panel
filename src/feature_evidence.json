@@ -1,0 +1,209 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-the-public-facing-government-school-website-with-a-complete-navigation-and-pages-sections-home-about-the-school-admissions-academics-staff-faculty-news-notices-gallery-and-contact",
+      "featureTitle": "Create the public-facing government school website with a complete navigation and pages/sections: Home, About the School, Admissions, Academics, Staff/Faculty, News & Notices, Gallery, and Contact.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/ContentBlock.tsx",
+        "frontend/src/components/PublicNav.tsx",
+        "frontend/src/components/SiteLayout.tsx",
+        "frontend/src/hooks/usePublicContent.ts",
+        "frontend/src/pages/AboutPage.tsx",
+        "frontend/src/pages/AcademicsPage.tsx",
+        "frontend/src/pages/AdmissionsPage.tsx",
+        "frontend/src/pages/ContactPage.tsx",
+        "frontend/src/pages/GalleryPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/NoticeDetailPage.tsx",
+        "frontend/src/pages/NoticesListPage.tsx",
+        "frontend/src/pages/StaffPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-consistent-visual-theme-for-the-site-colors-typography-spacing-and-component-styling-suitable-for-an-official-government-school-identity-and-apply-it-across-all-pages",
+      "featureTitle": "Implement a consistent visual theme for the site (colors, typography, spacing, and component styling) suitable for an official government school identity, and apply it across all pages.",
+      "files": [
+        "frontend/src/components/SiteLayout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-password-protected-admin-panel-that-allows-authorized-admins-to-manage-site-content-create-edit-delete-staff-entries-notices-news-posts-gallery-items-and-edit-page-content-blocks-and-contact-details",
+      "featureTitle": "Build a password-protected admin panel that allows authorized admins to manage site content (create/edit/delete staff entries, notices/news posts, gallery items, and edit page content blocks and contact details).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/admin/AdminDashboard.tsx",
+        "frontend/src/admin/sections/ContentBlocksSection.tsx",
+        "frontend/src/admin/sections/GallerySection.tsx",
+        "frontend/src/admin/sections/NoticesSection.tsx",
+        "frontend/src/admin/sections/StaffSection.tsx",
+        "frontend/src/hooks/useAdminContent.ts",
+        "frontend/src/pages/AdminPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-protect-access-to-the-admin-panel-and-its-url-by-requiring-a-password-before-showing-admin-content-unauthenticated-users-must-not-be-able-to-view-admin-dashboard-screens-or-perform-admin-operations",
+      "featureTitle": "Protect access to the admin panel and its URL by requiring a password before showing admin content; unauthenticated users must not be able to view admin dashboard screens or perform admin operations.",
+      "files": [
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/pages/AdminPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-admin-settings-capability-to-change-the-admin-password-requiring-the-current-password-with-the-password-stored-securely-in-the-backend-hashed-not-plaintext",
+      "featureTitle": "Add an admin settings capability to change the admin password (requiring the current password), with the password stored securely in the backend (hashed, not plaintext).",
+      "files": [
+        "frontend/src/hooks/useAdminContent.ts",
+        "frontend/src/pages/AdminPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-contact-page-form-that-lets-visitors-submit-inquiries-to-the-school-store-submissions-in-the-backend-and-allow-admins-to-view-and-delete-them-in-the-admin-panel",
+      "featureTitle": "Add a Contact page form that lets visitors submit inquiries to the school; store submissions in the backend and allow admins to view and delete them in the admin panel.",
+      "files": [
+        "frontend/src/admin/AdminDashboard.tsx",
+        "frontend/src/admin/sections/InquiriesSection.tsx",
+        "frontend/src/hooks/useAdminContent.ts",
+        "frontend/src/pages/ContactPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-gallery-support-where-public-users-can-view-a-gallery-grid-and-admins-can-add-remove-gallery-entries-including-support-for-linking-to-image-assets-stored-as-frontend-static-files",
+      "featureTitle": "Add gallery support where public users can view a gallery grid and admins can add/remove gallery entries, including support for linking to image assets stored as frontend static files.",
+      "files": [
+        "frontend/src/admin/sections/GallerySection.tsx",
+        "frontend/src/hooks/usePublicContent.ts",
+        "frontend/src/pages/GalleryPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-news-notices-system-where-admins-can-publish-notices-title-body-date-and-the-public-site-shows-a-list-view-and-detail-view",
+      "featureTitle": "Add a News & Notices system where admins can publish notices (title, body, date) and the public site shows a list view and detail view.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/admin/sections/NoticesSection.tsx",
+        "frontend/src/pages/NoticeDetailPage.tsx",
+        "frontend/src/pages/NoticesListPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-and-include-required-static-images-in-the-frontend-placed-in-frontend-public-assets-generated-and-use-them-in-the-site-header-footer-hero-as-appropriate-without-routing-image-delivery-through-the-backend",
+      "featureTitle": "Generate and include required static images in the frontend (placed in frontend/public/assets/generated) and use them in the site (header/footer/hero as appropriate) without routing image delivery through the backend.",
+      "files": [
+        "frontend/src/components/SiteLayout.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

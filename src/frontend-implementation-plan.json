@@ -1,0 +1,351 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Government school website (public pages + password-gated admin panel) — frontend",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build the public-facing site with responsive layout, navigation, and required pages/sections.",
+      "acceptanceCriteria": [
+        "Top-level navigation links to all required pages/sections",
+        "Each page renders meaningful placeholder content in English that can later be managed via the admin panel",
+        "Site layout is responsive for mobile/tablet/desktop"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the app shell and routing for public pages: Home, About, Admissions, Academics, Staff/Faculty, News & Notices (list + detail), Gallery, Contact, and Admin. Ensure routes are wired and navigable (no orphan pages)."
+        },
+        {
+          "path": "frontend/src/components/SiteLayout.tsx",
+          "operation": "create",
+          "description": "Create a responsive public layout with header (logo + nav), main content container, and footer. Use shadcn-ui components (e.g., Button, Navigation/Menu primitives if available) for consistent structure. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/PublicNav.tsx",
+          "operation": "create",
+          "description": "Implement top-level navigation links to all required public sections and an Admin link (can point to /admin). Use shadcn-ui components for buttons/menus where appropriate. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Create Home page with meaningful English placeholder sections (hero, quick links, highlights). Pull content blocks from backend when available and fall back to placeholders."
+        },
+        {
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "create",
+          "description": "Create About the School page with placeholder content and backend-driven content blocks fallback."
+        },
+        {
+          "path": "frontend/src/pages/AdmissionsPage.tsx",
+          "operation": "create",
+          "description": "Create Admissions page with placeholder content and backend-driven content blocks fallback."
+        },
+        {
+          "path": "frontend/src/pages/AcademicsPage.tsx",
+          "operation": "create",
+          "description": "Create Academics page with placeholder content and backend-driven content blocks fallback."
+        },
+        {
+          "path": "frontend/src/pages/StaffPage.tsx",
+          "operation": "create",
+          "description": "Create Staff/Faculty page rendering staff list from backend (with empty-state placeholders)."
+        },
+        {
+          "path": "frontend/src/pages/NoticesListPage.tsx",
+          "operation": "create",
+          "description": "Create News & Notices list page rendering notices from backend (newest first) with loading/empty states."
+        },
+        {
+          "path": "frontend/src/pages/NoticeDetailPage.tsx",
+          "operation": "create",
+          "description": "Create Notice detail view page that fetches a notice by id and renders title/body/date with not-found state."
+        },
+        {
+          "path": "frontend/src/pages/GalleryPage.tsx",
+          "operation": "create",
+          "description": "Create Gallery page rendering a responsive grid/list of gallery items from backend with empty-state placeholders."
+        },
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "create",
+          "description": "Create Contact page with school contact details content blocks and a visitor inquiry form (submission handled in REQ-7)."
+        },
+        {
+          "path": "frontend/src/hooks/usePublicContent.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for public reads needed by public pages (content blocks, staff list, notices list/detail, gallery list). Keep UI resilient with placeholder fallback when backend returns null/empty."
+        },
+        {
+          "path": "frontend/src/components/ContentBlock.tsx",
+          "operation": "create",
+          "description": "Create a small renderer for ContentBlock (title + content) to reuse across pages. Use shadcn-ui typography helpers/components where appropriate. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Apply an official, formal visual theme across public and admin areas (avoid blue/purple as primary).",
+      "acceptanceCriteria": [
+        "Theme is applied consistently across public pages and admin pages",
+        "Avoid blue/purple as primary colors (use a different coherent palette)",
+        "Typography and spacing feel formal/official and readable"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global Tailwind base styles and define a formal government-school theme using CSS variables (e.g., deep green/charcoal with warm accent) and readable typography defaults. Ensure the palette avoids blue/purple as primary."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme tokens (colors, font family, border radius, spacing) to match the official identity and align with shadcn-ui variable usage. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/SiteLayout.tsx",
+          "operation": "modify",
+          "description": "Apply themed styling to header/footer and consistent spacing/typography across pages using Tailwind + shadcn-ui components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/admin/AdminLayout.tsx",
+          "operation": "create",
+          "description": "Create a consistent admin layout (sidebar/topbar, content area) that reuses the same theme tokens as public pages. Use shadcn-ui components (e.g., Card, Tabs, Button). Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Build the admin panel UI (password-gated) for managing content (staff, notices, gallery, page blocks, contact details) via backend capabilities.",
+      "acceptanceCriteria": [
+        "Admin UI includes login form requiring a password",
+        "After login, admin can perform CRUD actions for required content types and changes appear on public pages",
+        "All admin write operations are rejected by the backend unless authenticated"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AdminPage.tsx",
+          "operation": "create",
+          "description": "Create the admin entry screen that performs password gating first (no admin data rendered until unlocked), then provides access to admin dashboard sections once authorized."
+        },
+        {
+          "path": "frontend/src/admin/AdminDashboard.tsx",
+          "operation": "create",
+          "description": "Create admin dashboard container with navigation between management sections: Page Content Blocks, Staff, News & Notices, Gallery, Contact Inquiries, Settings. Use shadcn-ui components (Tabs/Sidebar, Card, Table, Dialog) for consistent admin UI. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/admin/sections/ContentBlocksSection.tsx",
+          "operation": "create",
+          "description": "Create UI to list and edit content blocks (title/content) used by public pages, including update and delete actions. Use shadcn-ui form components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/admin/sections/StaffSection.tsx",
+          "operation": "create",
+          "description": "Create CRUD UI for staff entries (create/edit/delete) with fields name, position, biography, photoUrl. Use shadcn-ui Table + Dialog forms. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/admin/sections/NoticesSection.tsx",
+          "operation": "create",
+          "description": "Create CRUD UI for notices (title/body/date) with create/edit/delete and preview links to public detail route. Use shadcn-ui components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/admin/sections/GallerySection.tsx",
+          "operation": "create",
+          "description": "Create CRUD UI for gallery items (title/description/imageUrl) and guidance to reference static frontend assets or external URLs. Use shadcn-ui components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useAdminContent.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for admin reads/writes (mutations) for content blocks, staff, notices, gallery, and contact submissions. Ensure invalidation/refetch updates public pages after edits."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the /admin route to AdminPage and ensure admin dashboard screens are only reachable via the admin guard (no direct rendering without unlocking/auth)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Protect the admin route so unauthenticated users only see a password prompt; provide logout and ensure admin calls fail without auth.",
+      "acceptanceCriteria": [
+        "Visiting the admin route while unauthenticated shows only a password prompt (no admin data rendered)",
+        "Admin API calls require an authenticated session/token and fail without it",
+        "Provide a logout action that clears the local session and returns to the password prompt"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/admin/useAdminGate.ts",
+          "operation": "create",
+          "description": "Implement client-side admin gate state: store the entered admin password/token securely in sessionStorage (not in URL), expose unlock/lock helpers, and ensure locked state prevents any admin data queries from running."
+        },
+        {
+          "path": "frontend/src/pages/AdminPage.tsx",
+          "operation": "modify",
+          "description": "Show only a password prompt when locked; after unlock, require Internet Identity login (via the existing authorization component flow) and then check admin role (e.g., actor.isCallerAdmin/getCallerUserRole) before showing dashboard. Handle backend authorization errors with a clear message. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useActor.ts",
+          "operation": "modify",
+          "description": "Extend admin secret retrieval to use the existing URL hash secret helper AND sessionStorage-backed secret (so the password prompt can persist the token without keeping it in the address bar). Keep anonymous actor behavior for public browsing."
+        },
+        {
+          "path": "frontend/src/admin/AdminLayout.tsx",
+          "operation": "modify",
+          "description": "Add a Logout action that clears the local admin gate session (and any cached admin queries) and returns the UI to the password prompt. Use shadcn-ui Button components. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add an admin settings screen for changing the admin password (current password required).",
+      "acceptanceCriteria": [
+        "Backend stores only a password hash (no plaintext password)",
+        "Admin can update the password only after providing the current password",
+        "After password change, old password no longer grants access"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/admin/sections/SettingsSection.tsx",
+          "operation": "create",
+          "description": "Create Settings UI with a change-password form (current password + new password + confirm). Ensure form validation and clear success/error states. Use shadcn-ui form components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useAdminContent.ts",
+          "operation": "modify",
+          "description": "Add a mutation wrapper for the backend capability that changes the admin password (to be implemented backend-side). Ensure success triggers admin gate reset/log out so the old password is not retained client-side."
+        },
+        {
+          "path": "frontend/src/pages/AdminPage.tsx",
+          "operation": "modify",
+          "description": "Wire Settings section into admin dashboard navigation and ensure it remains protected by the admin gate (no rendering while locked)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement the public Contact form submission flow and admin viewing/deleting of inquiries.",
+      "acceptanceCriteria": [
+        "Public contact form validates required fields and submits to the backend",
+        "Admin panel lists submitted inquiries with timestamp and message details",
+        "Admin can delete inquiries and they no longer appear in the list"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "modify",
+          "description": "Implement the visitor inquiry form with required-field validation (name, email, message) and submission via backend capability. Provide loading/success/error UI using shadcn-ui components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/admin/sections/InquiriesSection.tsx",
+          "operation": "create",
+          "description": "Create admin UI listing contact submissions with timestamp and message details, plus delete action. Use shadcn-ui Table and Dialog/Alert for confirmations. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useAdminContent.ts",
+          "operation": "modify",
+          "description": "Add React Query hooks for fetching all contact submissions and deleting a submission; invalidate list on delete."
+        },
+        {
+          "path": "frontend/src/admin/AdminDashboard.tsx",
+          "operation": "modify",
+          "description": "Wire InquiriesSection into the admin dashboard navigation and ensure it is only available after admin authorization."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement gallery viewing for the public and admin add/edit/remove of gallery entries, with static asset URL support.",
+      "acceptanceCriteria": [
+        "Public Gallery page shows a grid/list of gallery items",
+        "Admin can add/edit/remove gallery entries (title/description and image reference)",
+        "Gallery entries persist and render correctly after refresh"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/GalleryPage.tsx",
+          "operation": "modify",
+          "description": "Render gallery items as a responsive grid with image, title, and description. Ensure images support static paths under frontend/public and external URLs, with graceful broken-image fallback."
+        },
+        {
+          "path": "frontend/src/admin/sections/GallerySection.tsx",
+          "operation": "modify",
+          "description": "Add/validate fields for image reference (static asset path or URL) and ensure create/edit/remove actions update the public gallery after refresh (via query invalidation). Use shadcn-ui components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/usePublicContent.ts",
+          "operation": "modify",
+          "description": "Ensure gallery list hook is used by GalleryPage and refetches appropriately after admin changes (via shared query keys)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Implement News & Notices public list/detail views and admin publishing management.",
+      "acceptanceCriteria": [
+        "Public notices list is sorted with newest first",
+        "Each notice has a dedicated detail view",
+        "Admin can create/edit/delete notices and changes reflect on the public site"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/NoticesListPage.tsx",
+          "operation": "modify",
+          "description": "Ensure notices are sorted newest first, show excerpts/metadata, and link each item to its detail route."
+        },
+        {
+          "path": "frontend/src/pages/NoticeDetailPage.tsx",
+          "operation": "modify",
+          "description": "Fetch and render notice by id with robust not-found/error handling and readable typography."
+        },
+        {
+          "path": "frontend/src/admin/sections/NoticesSection.tsx",
+          "operation": "modify",
+          "description": "Implement create/edit/delete flows and ensure updates invalidate public notices queries. Use shadcn-ui components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Ensure the notice detail route is registered (e.g., /notices/:id) and linked from the list and admin preview actions."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add the required generated static images under frontend/public/assets/generated and use them in the UI without backend image delivery.",
+      "acceptanceCriteria": [
+        "All required generated images exist under frontend/public/assets/generated with the exact filenames specified",
+        "Public pages render using the generated images via static paths",
+        "No backend endpoints are used to serve these images"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/school-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated image asset at the exact path: frontend/public/assets/generated/school-logo.dim_512x512.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-campus.dim_1600x600.png",
+          "operation": "create",
+          "description": "Add the generated image asset at the exact path: frontend/public/assets/generated/hero-campus.dim_1600x600.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/school-icons.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated image asset at the exact path: frontend/public/assets/generated/school-icons.dim_512x512.png."
+        },
+        {
+          "path": "frontend/src/components/SiteLayout.tsx",
+          "operation": "modify",
+          "description": "Use frontend/public/assets/generated/school-logo.dim_512x512.png in the header/footer branding. Use standard static asset referencing (no backend involvement)."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Use frontend/public/assets/generated/hero-campus.dim_1600x600.png in the Home hero section and frontend/public/assets/generated/school-icons.dim_512x512.png for section quick-links (Admissions/Academics/Staff/Notices/Gallery/Contact)."
+        }
+      ]
+    }
+  ]
+}

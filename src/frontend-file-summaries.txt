@@ -1,0 +1,4 @@
+{
+  "frontend/src/pages/NoticesListPage.tsx": "News and notices list page displaying all notices sorted by date with preview and type-safe links to detail pages using TanStack Router params syntax.",
+  "frontend/src/admin/sections/NoticesSection.tsx": "Admin section for managing notices (title/body/date) with CRUD operations, table view, edit dialog, delete confirmation, and type-safe preview links to public notice pages."
+}
